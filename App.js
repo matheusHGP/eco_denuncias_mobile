@@ -1,112 +1,74 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { Component } from "react";
+import { StyleSheet, View, ScrollView, Text } from "react-native";
+import Card from './src/components/Card'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      activeIcon: ''
+    }
+  }
+  render() {
+    return (
+      <>
+        <ScrollView>
+          <Card title="teste" />
+          <Card title="teste" />
+          <Card title="teste" />
+          <Card title="teste" />
+          <Card title="teste" />
+          <Card title="teste" />
+        </ScrollView>
+        <View style={styles.bottomBar}>
+          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'list-alt'})}>
+            <Icon style={styles.icon} name="list-alt" size={30} color={this.state.activeIcon === 'list-alt' ? '#42A5C5' : 'white'}/>
+            <Text style={styles.textIcon}>Denuncias</Text>
+          </View>
+          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'plus-circle'})}>
+            <Icon style={styles.icon} name="plus-circle" size={30} color={this.state.activeIcon === 'plus-circle' ? '#42A5C5' : 'white'} />
+            <Text style={styles.textIcon}>Nova Denuncia</Text>
+          </View>
+          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'bar-graph'})}>
+            <EntypoIcon style={styles.icon} name="bar-graph" size={30} color={this.state.activeIcon === 'bar-graph' ? '#42A5C5' : 'white'}/>
+            <Text style={styles.textIcon}>Estatísticas</Text>
+          </View>
+          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'user'})}>
+            <Icon style={styles.icon} name="user" size={30} color={this.state.activeIcon === 'user' ? '#42A5C5' : 'white'}/>
+            <Text style={styles.textIcon}>Perfil</Text>
+          </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+      </>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  bottomBar: {
+    backgroundColor: '#446DAB',
+    height: 50,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  viewIcon: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    textAlign: 'center'
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  icon:{
+    marginTop: 22
   },
-  highlight: {
-    fontWeight: '700',
-  },
+  textIcon: {
+    marginTop: 0,
+    color: 'white',
+    fontWeight: '100',
+    fontStyle: 'segaon-thin'
+  }
 });
 
 export default App;
