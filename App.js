@@ -66,8 +66,7 @@ const styles = StyleSheet.create({
   textIcon: {
     marginTop: 0,
     color: 'white',
-    fontWeight: '100',
-    fontStyle: 'segaon-thin'
+    fontWeight: '100'
   }
 });
 
