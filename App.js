@@ -12,7 +12,7 @@ import Accusations from "./src/views/Accusations";
 import Profile from './src/views/Profile'
 import NewOptions from "./src/views/NewOptions";
 import NavigatorOptions from "./src/views/NavigatorOptions";
-import New from "./src/views/New";
+import New from "./src/views/new/New";
 
 
 const Tab = createBottomTabNavigator();

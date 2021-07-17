@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, View, TextInput, Text, ScrollView } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import CustomizeSteps  from "../components/CustomizeSteps";
+import CustomizeSteps  from "../../components/CustomizeSteps";
 import { useEffect } from "react/cjs/react.production.min";
 
 const Stack = createStackNavigator();

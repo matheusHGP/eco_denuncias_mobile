@@ -14,7 +14,7 @@ const CustomModal = ({ content, onClose, navigation }) => {
             <Text style={styles.modalText}>{content}</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {onClose(); navigation.navigate('New')}}
+              onPress={() => {onClose(); navigation.navigate('Nova Denúncia')}}
             >
               <Text style={styles.textStyle}>Continuar</Text>
             </Pressable>

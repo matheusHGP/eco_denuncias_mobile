@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ScrollView, Text, Button } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 import Card from "../components/Card";
-import New from '../views/New'
+import New from './new/New'
 
 const Stack = createStackNavigator();
 
