@@ -7,30 +7,17 @@ import EntypoIcon from 'react-native-vector-icons/Entypo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import Statistics from "./src/views/Statistics";
+import Accusations from "./src/views/Accusations";
+import Profile from './src/views/Profile'
+import NewOptions from "./src/views/NewOptions";
+import NavigatorOptions from "./src/views/NavigatorOptions";
+import New from "./src/views/New";
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const Teste = () => {
-  return (
-    <Text>Teste</Text>
-  )
-}
-
-const Teste2 = () => {
-  return [
-    'Descarte irregular de resíduos',
-    'Desmatamento',
-    'loteamento irregular',
-    'Uso indevido de área pública',
-    'Maus tratos contra animais',
-    'Abandono de animas'].map((title, index) => {
-      return (
-        <Card key={index} title={title}></Card>
-      )
-    })
-}
 class App extends Component {
   render() {
     return (
@@ -41,18 +28,16 @@ class App extends Component {
             showLabel: false,
             inactiveTintColor: 'gray',
             style: {
-              elevation: 0,
-              position: "absolute",
-              bottom: 10,
-              left: 10,
-              right: 10,
+              marginRight: 10,
+              marginLeft: 10,
+              marginBottom: 10,
               backgroundColor: 'white',
               borderRadius: 15,
               height: 80
             }
           }}
         >
-          <Tab.Screen name="Home3" component={Teste2} options={{
+          <Tab.Screen name="Statistics" component={Statistics} options={{
             tabBarIcon: ({ focused }) => {
               return (
                 <View style={styles.iconView}>
@@ -62,7 +47,7 @@ class App extends Component {
               )
             }
           }} />
-          <Tab.Screen name="Home4" component={Teste2} options={{
+          <Tab.Screen name="Accusations" component={Accusations} options={{
             tabBarIcon: ({ focused }) => {
               return (
                 <View style={styles.iconView}>
@@ -72,7 +57,7 @@ class App extends Component {
               )
             }
           }} />
-          <Tab.Screen name="Home2" component={Teste2} options={{
+          <Tab.Screen name="NewOptions" component={NavigatorOptions} options={{
             tabBarIcon: ({ focused }) => {
               return (
                 <View style={styles.iconView}>
@@ -82,7 +67,7 @@ class App extends Component {
               )
             }
           }} />
-          <Tab.Screen name="Home" component={Teste} options={{
+          <Tab.Screen name="Profile" component={Profile} options={{
             tabBarIcon: ({ focused }) => {
               return (
                 <View style={styles.iconView}>

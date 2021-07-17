@@ -1,39 +1,85 @@
-import React from "react";
-import { StyleSheet, View, ScrollView, Text, Button } from "react-native";
+import React, { Component, useState } from "react";
+import { StyleSheet, View, TextInput, Text, ScrollView } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import Card from "../components/Card";
+import CustomizeSteps  from "../components/CustomizeSteps";
+import { useEffect } from "react/cjs/react.production.min";
 
 const Stack = createStackNavigator();
 
-const New = ({ navigation }) => {
-    return (
-        <Text>teste</Text>
-    )
+export default class New extends Component {
+    constructor({ navigation }) {
+        super()
+        this.state = {
+            screens: [],
+            activeStep: 3
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            screens: [{
+                label: 'name 1'
+            }]
+        })
+    }
+
+    render() {
+        return (
+            <View style={styles.containerSteps}>
+                <CustomizeSteps
+                    screens={this.state.screens}
+                    activeStep={this.state.activeStep}
+                />
+            </View>
+        )
+    }
 }
 
+
+// return (
+// <View style={styles.container}>
+//     <ScrollView>
+//         <View style={styles.form}>
+//             <Text>Nome</Text>
+//             <TextInput style={styles.input} value={'teste'} />
+//         </View>
+//         <View style={styles.form}>
+//             <Text>Sobrenome</Text>
+//             <TextInput style={styles.input} value={'teste'} />
+//         </View>
+//         <View style={styles.form}>
+//             <Text>Endereço</Text>
+//             <TextInput style={styles.input} value={'teste'} />
+//         </View>
+//         <View style={styles.form}>
+//             <Text>Bairro</Text>
+//             <TextInput style={styles.input} value={'teste'} />
+//         </View>
+//         <View style={styles.form}>
+//             <Text>Número</Text>
+//             <TextInput style={styles.input} value={'teste'} />
+//         </View>
+//     </ScrollView>
+//     <View>
+
+//     </View>
+// </View >
+// )
+
 const styles = StyleSheet.create({
-    bottomBar: {
-        backgroundColor: '#446DAB',
-        height: 50,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around'
+    input: {
+        height: 40,
+        borderWidth: 1,
+        borderRadius: 5
     },
-    viewIcon: {
+    form: {
+        margin: 12,
         display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'center',
         textAlign: 'center'
     },
-    icon: {
-        marginTop: 22
-    },
-    textIcon: {
-        marginTop: 0,
-        color: 'white',
-        fontWeight: '100'
+    containerSteps: {
+        flex: 1
     }
 });
-
-export default New;

@@ -1,24 +1,17 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Text, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import Card from "../components/Card";
-import New from '../views/New'
+import New from './New'
+import NewOptions from "./NewOptions";
 
 const Stack = createStackNavigator();
 
-const NewOptions = ({ navigation }) => {
+const NavigatorOptions = ({ navigation }) => {
     return (
-        [
-            'Descarte irregular de resíduos',
-            'Desmatamento',
-            'loteamento irregular',
-            'Uso indevido de área pública',
-            'Maus tratos contra animais',
-            'Abandono de animas'].map((title, index) => {
-                return (
-                    <Card navigation={navigation} key={index} title={title}></Card>
-                )
-            })
+        <Stack.Navigator initialRouteName="teste">
+            <Stack.Screen name="NewOptions" component={NewOptions} />
+            <Stack.Screen name="New" component={New} />
+        </Stack.Navigator>
     )
 }
 
@@ -47,4 +40,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default NewOptions;
+export default NavigatorOptions;

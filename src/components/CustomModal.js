@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
-const CustomModal = ({ content, onClose }) => {
+const CustomModal = ({ content, onClose, navigation }) => {
   return (
     <View style={styles.floatingView}>
       <Modal
@@ -14,7 +14,7 @@ const CustomModal = ({ content, onClose }) => {
             <Text style={styles.modalText}>{content}</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => onClose()}
+              onPress={() => {onClose(); navigation.navigate('New')}}
             >
               <Text style={styles.textStyle}>Continuar</Text>
             </Pressable>
