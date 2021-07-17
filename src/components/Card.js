@@ -1,13 +1,18 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { Component, useState } from "react";
+import { StyleSheet, View, Text, TouchableHighlight, Touchable, TouchableOpacity } from "react-native";
+import CustomModal from "../components/CustomModal"
 
 const Card = ({ title }) => {
+    const [modalOpened, setModalOpened] = useState(false)
     return (
-        <View>
-            <View style={styles.card}>
-                <Text style={styles.textCard}>{title}</Text>
-            </View>
-        </View>
+        <>
+            <TouchableOpacity onPress={() => setModalOpened(true)}>
+                <View style={styles.card}>
+                    <Text style={styles.textCard}>{title}</Text>
+                </View>
+            </TouchableOpacity >
+            {modalOpened && <CustomModal content={title} onClose={() => setModalOpened(false)}/>}
+        </>
     )
 }
 
@@ -15,7 +20,7 @@ const styles = StyleSheet.create({
     card: {
         borderRadius: 6,
         elevation: 3,
-        backgroundColor: 'black',
+        backgroundColor: '#000C66',
         shadowOffset: { width: 1, height: 1 },
         shadowColor: '#333',
         shadowOpacity: 0.3,
@@ -29,10 +34,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    textCard:{
+    textCard: {
         color: 'white',
-        fontSize: 30,
-        fontWeight: 'bold'
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
 });
 

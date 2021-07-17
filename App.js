@@ -1,72 +1,111 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import Card from './src/components/Card'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const Teste = () => {
+  return (
+    <Text>Teste</Text>
+  )
+}
+
+const Teste2 = () => {
+  return [
+    'Descarte irregular de resíduos',
+    'Desmatamento',
+    'loteamento irregular',
+    'Uso indevido de área pública',
+    'Maus tratos contra animais',
+    'Abandono de animas'].map((title, index) => {
+      return (
+        <Card key={index} title={title}></Card>
+      )
+    })
+}
 class App extends Component {
-  constructor(){
-    super()
-    this.state = {
-      activeIcon: ''
-    }
-  }
   render() {
     return (
-      <>
-        <ScrollView>
-          <Card title="teste" />
-          <Card title="teste" />
-          <Card title="teste" />
-          <Card title="teste" />
-          <Card title="teste" />
-          <Card title="teste" />
-        </ScrollView>
-        <View style={styles.bottomBar}>
-          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'list-alt'})}>
-            <Icon style={styles.icon} name="list-alt" size={30} color={this.state.activeIcon === 'list-alt' ? '#42A5C5' : 'white'}/>
-            <Text style={styles.textIcon}>Denuncias</Text>
-          </View>
-          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'plus-circle'})}>
-            <Icon style={styles.icon} name="plus-circle" size={30} color={this.state.activeIcon === 'plus-circle' ? '#42A5C5' : 'white'} />
-            <Text style={styles.textIcon}>Nova Denuncia</Text>
-          </View>
-          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'bar-graph'})}>
-            <EntypoIcon style={styles.icon} name="bar-graph" size={30} color={this.state.activeIcon === 'bar-graph' ? '#42A5C5' : 'white'}/>
-            <Text style={styles.textIcon}>Estatísticas</Text>
-          </View>
-          <View style={styles.viewIcon} onTouchStart={() => this.setState({activeIcon:'user'})}>
-            <Icon style={styles.icon} name="user" size={30} color={this.state.activeIcon === 'user' ? '#42A5C5' : 'white'}/>
-            <Text style={styles.textIcon}>Perfil</Text>
-          </View>
-        </View>
-      </>
+      <NavigationContainer>
+        <Tab.Navigator
+          tabBarOptions={{
+            activeTintColor: 'tomato',
+            showLabel: false,
+            inactiveTintColor: 'gray',
+            style: {
+              elevation: 0,
+              position: "absolute",
+              bottom: 10,
+              left: 10,
+              right: 10,
+              backgroundColor: 'white',
+              borderRadius: 15,
+              height: 80
+            }
+          }}
+        >
+          <Tab.Screen name="Home3" component={Teste2} options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View style={styles.iconView}>
+                  <EntypoIcon name="bar-graph" color={focused ? 'black' : '#000C66'} size={30} />
+                  <Text style={styles.textView}>Estatísticas</Text>
+                </View>
+              )
+            }
+          }} />
+          <Tab.Screen name="Home4" component={Teste2} options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View style={styles.iconView}>
+                  <Icon5 name="clipboard-list" color={focused ? 'black' : '#000C66'} size={30} />
+                  <Text style={styles.textView}>Denúncias</Text>
+                </View>
+              )
+            }
+          }} />
+          <Tab.Screen name="Home2" component={Teste2} options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View style={styles.iconView}>
+                  <Icon name="plus-square" color={focused ? 'black' : '#000C66'} size={30} />
+                  <Text style={styles.textView}>Nova denúncia</Text>
+                </View>
+              )
+            }
+          }} />
+          <Tab.Screen name="Home" component={Teste} options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View style={styles.iconView}>
+                  <Icon name="user" color={focused ? 'black' : '#000C66'} size={30} />
+                  <Text style={styles.textView}>Perfil</Text>
+                </View>
+              )
+            }
+          }} />
+        </Tab.Navigator>
+      </NavigationContainer>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  bottomBar: {
-    backgroundColor: '#446DAB',
-    height: 50,
+  iconView: {
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around'
+    flexDirection: 'column',
+    alignItems: "center"
   },
-  viewIcon: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+  textView: {
     textAlign: 'center'
-  },
-  icon:{
-    marginTop: 22
-  },
-  textIcon: {
-    marginTop: 0,
-    color: 'white',
-    fontWeight: '100'
   }
 });
 
