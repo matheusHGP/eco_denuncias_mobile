@@ -1,7 +1,9 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
-import Resume from '../views/new/Resume'
+import Tela1 from '../views/new/Tela1'
+import Tela2 from '../views/new/Tela2'
+import Tela3 from '../views/new/Tela3'
 
 
 export default class CustomizeSteps extends Component {
@@ -20,7 +22,7 @@ export default class CustomizeSteps extends Component {
                         nextBtnStyle={styles.bntStyle}
                         nextBtnTextStyle={styles.textStyle}
                     >
-                        <Resume />
+                        <Tela1 />
                     </ProgressStep>
 
                     <ProgressStep
@@ -32,9 +34,7 @@ export default class CustomizeSteps extends Component {
                         previousBtnStyle={styles.prevBntStyle}
                         previousBtnTextStyle={styles.textStyle}
                     >
-                        <View style={{ alignItems: 'center' }}>
-                            <Text>tela 2</Text>
-                        </View>
+                        <Tela2 />
                     </ProgressStep>
 
                     <ProgressStep
@@ -46,9 +46,7 @@ export default class CustomizeSteps extends Component {
                         previousBtnStyle={styles.prevBntStyle}
                         previousBtnTextStyle={styles.textStyle}
                     >
-                        <View style={{ alignItems: 'center' }}>
-                            <Text>tela 3</Text>
-                        </View>
+                        <Tela3 />
                     </ProgressStep>
 
                     <ProgressStep

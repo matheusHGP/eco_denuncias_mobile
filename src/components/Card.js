@@ -18,17 +18,18 @@ const Card = ({ title, navigation }) => {
 
 const styles = StyleSheet.create({
     card: {
-        borderRadius: 6,
+        borderRadius: 30,
         elevation: 3,
-        backgroundColor: '#000C66',
+        backgroundColor: '#42A5C5',
         shadowOffset: { width: 1, height: 1 },
         shadowColor: '#333',
         shadowOpacity: 0.3,
         shadowRadius: 2,
         marginHorizontal: 4,
         marginVertical: 6,
-        height: 80,
+        height: 70,
         margin: 100,
+        marginTop: 10,
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'row',
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
     }
 });
 

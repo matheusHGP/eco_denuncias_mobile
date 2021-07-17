@@ -16,24 +16,28 @@ export default class Resume extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     <View style={styles.form}>
-                        <Text>Nome</Text>
-                        <TextInput style={styles.input} value={'teste'} />
-                    </View>
-                    <View style={styles.form}>
-                        <Text>Sobrenome</Text>
-                        <TextInput style={styles.input} value={'teste'} />
-                    </View>
-                    <View style={styles.form}>
-                        <Text>Endereço</Text>
-                        <TextInput style={styles.input} value={'teste'} />
-                    </View>
-                    <View style={styles.form}>
-                        <Text>Bairro</Text>
-                        <TextInput style={styles.input} value={'teste'} />
+                        <Text>Nome da Rua </Text>
+                        <TextInput style={styles.input} value={'Digite o nome da rua'} />
                     </View>
                     <View style={styles.form}>
                         <Text>Número</Text>
-                        <TextInput style={styles.input} value={'teste'} />
+                        <TextInput style={styles.input} value={'Digite o número'} />
+                    </View>
+                    <View style={styles.form}>
+                        <Text>Bairro</Text>
+                        <TextInput style={styles.input} value={'Digite o bairro'} />
+                    </View>
+                    <View style={styles.form}>
+                        <Text>Ponto de Referência</Text>
+                        <TextInput style={styles.input} value={'Digite um ponto de Refereência'} />
+                    </View>
+                    <View style={styles.form}>
+                        <Text>Quando?</Text>
+                        <TextInput style={styles.input} value={'Digite a data e hora'} />
+                    </View>
+                    <View style={styles.form}>
+                        <Text>Informe o Ocorrido</Text>
+                        <TextInput style={styles.inputBig} value={'Ocorrêencia'} />
                     </View>
                 </ScrollView>
                 <View>
@@ -47,8 +51,15 @@ export default class Resume extends Component {
 const styles = StyleSheet.create({
     input: {
         height: 40,
+        paddingLeft: 7,
         borderWidth: 1,
-        borderRadius: 5
+        borderRadius: 7
+    },
+    inputBig: {
+        height: 80,
+        paddingLeft: 7,
+        borderWidth: 1,
+        borderRadius: 7
     },
     form: {
         margin: 12,
