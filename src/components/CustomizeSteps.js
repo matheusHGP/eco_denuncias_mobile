@@ -1,9 +1,12 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
-import Tela1 from '../views/new/Tela1'
-import Tela2 from '../views/new/Tela2'
-import Tela3 from '../views/new/Tela3'
+import TipoDenuncia from '../views/new/TipoDenuncia'
+import Location from '../views/new/Location'
+import Photos from '../views/new/Photos'
+import Infrator from '../views/new/Infrator'
+import AdInformation from '../views/new/AdInformation'
+import Final from '../views/new/Final'
 
 
 export default class CustomizeSteps extends Component {
@@ -22,7 +25,7 @@ export default class CustomizeSteps extends Component {
                         nextBtnStyle={styles.bntStyle}
                         nextBtnTextStyle={styles.textStyle}
                     >
-                        <Tela1 />
+                        <TipoDenuncia />
                     </ProgressStep>
 
                     <ProgressStep
@@ -34,7 +37,7 @@ export default class CustomizeSteps extends Component {
                         previousBtnStyle={styles.prevBntStyle}
                         previousBtnTextStyle={styles.textStyle}
                     >
-                        <Tela2 />
+                        <Location />
                     </ProgressStep>
 
                     <ProgressStep
@@ -46,7 +49,7 @@ export default class CustomizeSteps extends Component {
                         previousBtnStyle={styles.prevBntStyle}
                         previousBtnTextStyle={styles.textStyle}
                     >
-                        <Tela3 />
+                        <Photos />
                     </ProgressStep>
 
                     <ProgressStep
@@ -60,9 +63,35 @@ export default class CustomizeSteps extends Component {
                         previousBtnTextStyle={styles.textStyle}
 
                     >
-                        <View style={{ alignItems: 'center' }}>
-                            <Text>tela 4</Text>
-                        </View>
+                        <Infrator />
+                    </ProgressStep>
+
+                    <ProgressStep
+                        label={"tela 5"}
+                        nextBtnText="Próximo"
+                        previousBtnText="Anterior"
+                        finishBtnText="Finalizar"
+                        nextBtnStyle={styles.bntStyle}
+                        nextBtnTextStyle={styles.textStyle}
+                        previousBtnStyle={styles.prevBntStyle}
+                        previousBtnTextStyle={styles.textStyle}
+
+                    >
+                        <AdInformation />
+                    </ProgressStep>
+
+                    <ProgressStep
+                        label={"tela 6"}
+                        nextBtnText="Próximo"
+                        previousBtnText="Anterior"
+                        finishBtnText="Finalizar"
+                        nextBtnStyle={styles.bntStyle}
+                        nextBtnTextStyle={styles.textStyle}
+                        previousBtnStyle={styles.prevBntStyle}
+                        previousBtnTextStyle={styles.textStyle}
+
+                    >
+                        <Final />
                     </ProgressStep>
                 </ProgressSteps>
             </View>
