@@ -1,14 +1,50 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
 import CustomizeSteps from "../../components/CustomizeSteps";
 import { useEffect } from "react/cjs/react.production.min";
+import { response } from "express";
 
 const Stack = createStackNavigator();
 
 export default class Resume extends Component {
     constructor({ navigation }) {
-        super()
+        super();
+        this.state = {
+            open: false,
+            capturePhoto: null,
+        }
+    }
+
+
+
+    openAlbum() {
+        let options = {
+            title: 'Select Image',
+            customButtons: [
+                {
+                    name: 'customOptionKey',
+                    title: 'Choose Photo from Custom Option'
+                },
+            ],
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+
+        launchImageLibrary(options, (response) => {
+
+            if (response.didCancel) {
+                alert('Operação cancelada')
+            } else if (response.error) {
+                alert('Ocorreu um erro. Tente novamente')
+            } else {
+                this.setState({ capturePhoto: response.uri })
+                this.setState({ open: true })
+            }
+        })
     }
 
     render() {
@@ -18,7 +54,7 @@ export default class Resume extends Component {
                     <Text style={styles.header}> Selecione as imagens </Text>
                     <Text style={styles.header2}> Selecione images de seu dispositivo ou tire uma foto agora mesmo </Text>
                     <View style={styles.selecionar}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={this.openAlbum}>
                             <Text style={styles.selecionarText}> Selecionar </Text>
                         </TouchableOpacity>
                         <TouchableOpacity>
