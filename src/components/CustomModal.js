@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
-const CustomModal = ({ content, onClose, navigation }) => {
+const CustomModal = ({ problem, onClose, navigation }) => {
   return (
     <View style={styles.floatingView}>
       <Modal
@@ -11,13 +11,24 @@ const CustomModal = ({ content, onClose, navigation }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>{content}</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {onClose(); navigation.navigate('Nova Denúncia')}}
-            >
-              <Text style={styles.textStyle}>Continuar</Text>
-            </Pressable>
+            <View>
+              <Text style={styles.description}>{problem.description}</Text>
+            </View>
+
+            <View style={styles.modalBody}>
+              <Text style={styles.explication}>{problem.explication}</Text>
+            </View>
+
+            <View>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => {
+                  onClose(); navigation.navigate('Nova Denúncia', {problem})
+                }}
+              >
+                <Text style={styles.textStyle}>Continuar</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
@@ -26,6 +37,16 @@ const CustomModal = ({ content, onClose, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  description: {
+    fontSize: 20,
+    marginBottom: 15,
+    textAlign: "center",
+    color: 'black',
+    fontWeight: 'bold'
+  },
+  modalBody: {
+    marginBottom: 20
+  },
   floatingView: {
     justifyContent: "center",
     alignItems: "center",
@@ -40,7 +61,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "white",
     borderRadius: 25,
-    padding: 55,
+    padding: 20,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {

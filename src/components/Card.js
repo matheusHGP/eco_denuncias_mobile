@@ -2,16 +2,21 @@ import React, { Component, useState } from "react";
 import { StyleSheet, View, Text, TouchableHighlight, Touchable, TouchableOpacity } from "react-native";
 import CustomModal from "../components/CustomModal"
 
-const Card = ({ title, navigation }) => {
+const Card = ({ problem, navigation }) => {
     const [modalOpened, setModalOpened] = useState(false)
     return (
         <>
             <TouchableOpacity onPress={() => setModalOpened(true)}>
                 <View style={styles.card}>
-                    <Text style={styles.textCard}>{title}</Text>
+                    <Text style={styles.textCard}>{problem.description}</Text>
                 </View>
             </TouchableOpacity >
-            {modalOpened && <CustomModal content={title} navigation={navigation} onClose={() => setModalOpened(false)}/>}
+            {modalOpened &&
+                <CustomModal
+                    problem={problem}
+                    navigation={navigation}
+                    onClose={() => setModalOpened(false)}
+                />}
         </>
     )
 }

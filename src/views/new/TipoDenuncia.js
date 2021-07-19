@@ -6,52 +6,47 @@ import { useEffect } from "react/cjs/react.production.min";
 
 const Stack = createStackNavigator();
 
-export default class Resume extends Component {
-    constructor({ navigation }) {
+export default class TipoDenuncia extends Component {
+    constructor() {
         super()
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <ScrollView>
-                    <Text style={styles.hearder}> O tipo de denuncia selecionada:  </Text>
-                    <Text style={styles.hearder}> Descarte irregular de resíduos </Text>
-                    <Text style={styles.hearder2}> Explicação do problema </Text>
-                    <Text style={styles.TextImg}>
-                        <Image source={require('../../images/descarteResiduos.jpg')} style={styles.img} />
-                    </Text>
-                </ScrollView>
-                <View>
-
+            <ScrollView>
+                <Text style={styles.header}>{this.props.problem.description}</Text>
+                <Text style={styles.body}>{this.props.problem.explication}</Text>
+                <View
+                    style={styles.footer}
+                >
+                    <Image style={styles.image} source={require('../../images/descarteResiduos.jpg')} />
                 </View>
-            </View >
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    hearder: {
+    header: {
         textAlign: 'center',
         fontSize: 23,
-        margin: 20
+        marginBottom: 20,
+        fontWeight: 'bold'
     },
-
-    hearder2: {
+    body: {
         textAlign: 'center',
-        fontSize: 23,
-        marginTop: 30
+        fontSize: 18,
+        fontWeight: '700'
     },
-
-    TextImg: {
+    footer: {
         textAlign: 'center',
-        marginTop: -110,
-        marginBottom: 30
-    }, 
-
-    img: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 20
+    },
+    image: {
         width: 300,
         height: 300,
-        alignItems: 'center'
     },
 });

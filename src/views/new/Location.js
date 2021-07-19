@@ -6,9 +6,19 @@ import { useEffect } from "react/cjs/react.production.min";
 
 const Stack = createStackNavigator();
 
-export default class Resume extends Component {
-    constructor({ navigation }) {
+export default class Location extends Component {
+    constructor() {
         super()
+        this.state = {
+            location: {
+
+            }
+        }
+    }
+
+    componentDidMount(){
+        // console.log(this.props.state.location)
+        // this.setState({location: this.props.state.location})
     }
 
     render() {
@@ -17,27 +27,27 @@ export default class Resume extends Component {
                 <ScrollView>
                     <View style={styles.form}>
                         <Text>Nome da Rua </Text>
-                        <TextInput style={styles.input} value={'Digite o nome da rua'} />
+                        <TextInput onChangeText={(value) => this.props.onChange('street', value)} style={styles.input} value={this.props.state.location.street} />
                     </View>
                     <View style={styles.form}>
                         <Text>Número</Text>
-                        <TextInput style={styles.input} value={'Digite o número'} />
+                        <TextInput onChangeText={(value) => this.props.onChange('number', value)} style={styles.input} value={this.props.state.location.number} />
                     </View>
                     <View style={styles.form}>
                         <Text>Bairro</Text>
-                        <TextInput style={styles.input} value={'Digite o bairro'} />
+                        <TextInput onChangeText={(value) => this.props.onChange('neighborhood', value)} style={styles.input} value={this.props.state.location.neighborhood} />
                     </View>
                     <View style={styles.form}>
                         <Text>Ponto de Referência</Text>
-                        <TextInput style={styles.input} value={'Digite um ponto de Refereência'} />
+                        <TextInput onChangeText={(value) => this.props.onChange('point_refer', value)} style={styles.input} value={this.props.state.location.point_refer} />
                     </View>
                     <View style={styles.form}>
                         <Text>Quando?</Text>
-                        <TextInput style={styles.input} value={'Digite a data e hora'} />
+                        <TextInput onChangeText={(value) => this.props.onChange('date_occurred', value)} style={styles.input} value={this.props.state.location.date_occurred} />
                     </View>
                     <View style={styles.form}>
                         <Text>Informe o Ocorrido</Text>
-                        <TextInput style={styles.inputBig} value={'Ocorrêencia'} />
+                        <TextInput onChangeText={(value) => this.props.onChange('other_observations', value)} style={styles.inputBig} value={this.props.state.location.other_observations} />
                     </View>
                 </ScrollView>
                 <View>

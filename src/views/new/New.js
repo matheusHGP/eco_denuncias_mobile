@@ -7,7 +7,7 @@ import { useEffect } from "react/cjs/react.production.min";
 const Stack = createStackNavigator();
 
 export default class New extends Component {
-    constructor({ navigation }) {
+    constructor() {
         super()
         this.state = {
             screens: [],
@@ -16,6 +16,7 @@ export default class New extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.route.params.problem)
         this.setState({
             screens: [{
                 label: 'name 1'
@@ -29,6 +30,7 @@ export default class New extends Component {
                 <CustomizeSteps
                     screens={this.state.screens}
                     activeStep={this.state.activeStep}
+                    problem={this.props.route.params.problem}
                 />
             </View>
         )
