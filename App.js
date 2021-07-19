@@ -13,72 +13,97 @@ import Profile from './src/views/Profile'
 import NewOptions from "./src/views/NewOptions";
 import NavigatorOptions from "./src/views/NavigatorOptions";
 import New from "./src/views/new/New";
+import Login from "./src/views/Login";
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      token: '',
+      isSigned: false,
+    }
+  }
+
+  setStateLogin = (token) => {
+    this.setState({ token })
+    this.setState({ isSigned: true })
+  }
+
   render() {
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          tabBarOptions={{
-            activeTintColor: 'tomato',
-            showLabel: false,
-            inactiveTintColor: 'gray',
-            style: {
-              marginRight: 10,
-              marginLeft: 10,
-              marginBottom: 10,
-              backgroundColor: 'white',
-              borderRadius: 15,
-              height: 80
-            }
-          }}
-        >
-          <Tab.Screen name="Statistics" component={Statistics} options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <View style={styles.iconView}>
-                  <EntypoIcon name="bar-graph" color={focused ? 'black' : '#000C66'} size={30} />
-                  <Text style={styles.textView}>Estatísticas</Text>
-                </View>
-              )
-            }
-          }} />
-          <Tab.Screen name="Accusations" component={Accusations} options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <View style={styles.iconView}>
-                  <Icon5 name="clipboard-list" color={focused ? 'black' : '#000C66'} size={30} />
-                  <Text style={styles.textView}>Denúncias</Text>
-                </View>
-              )
-            }
-          }} />
-          <Tab.Screen name="NewOptions" component={NavigatorOptions} options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <View style={styles.iconView}>
-                  <Icon name="plus-square" color={focused ? 'black' : '#000C66'} size={30} />
-                  <Text style={styles.textView}>Nova denúncia</Text>
-                </View>
-              )
-            }
-          }} />
-          <Tab.Screen name="Profile" component={Profile} options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <View style={styles.iconView}>
-                  <Icon name="user" color={focused ? 'black' : '#000C66'} size={30} />
-                  <Text style={styles.textView}>Perfil</Text>
-                </View>
-              )
-            }
-          }} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <>
+        <NavigationContainer>
+          {this.state.isSigned ?
+            <Tab.Navigator
+              tabBarOptions={{
+                activeTintColor: 'tomato',
+                showLabel: false,
+                inactiveTintColor: 'gray',
+                style: {
+                  marginRight: 10,
+                  marginLeft: 10,
+                  marginBottom: 10,
+                  backgroundColor: 'white',
+                  borderRadius: 15,
+                  height: 80
+                }
+              }}
+            >
+              <Tab.Screen name="Statistics" component={Statistics} options={{
+                tabBarIcon: ({ focused }) => {
+                  return (
+                    <View style={styles.iconView}>
+                      <EntypoIcon name="bar-graph" color={focused ? 'black' : '#000C66'} size={30} />
+                      <Text style={styles.textView}>Estatísticas</Text>
+                    </View>
+                  )
+                }
+              }} />
+              <Tab.Screen name="Accusations" component={Accusations} options={{
+                tabBarIcon: ({ focused }) => {
+                  return (
+                    <View style={styles.iconView}>
+                      <Icon5 name="clipboard-list" color={focused ? 'black' : '#000C66'} size={30} />
+                      <Text style={styles.textView}>Denúncias</Text>
+                    </View>
+                  )
+                }
+              }} />
+              <Tab.Screen name="NewOptions" component={NavigatorOptions} options={{
+                tabBarIcon: ({ focused }) => {
+                  return (
+                    <View style={styles.iconView}>
+                      <Icon name="plus-square" color={focused ? 'black' : '#000C66'} size={30} />
+                      <Text style={styles.textView}>Nova denúncia</Text>
+                    </View>
+                  )
+                }
+              }} />
+              <Tab.Screen name="Profile" component={Profile} options={{
+                tabBarIcon: ({ focused }) => {
+                  return (
+                    <View style={styles.iconView}>
+                      <Icon name="user" color={focused ? 'black' : '#000C66'} size={30} />
+                      <Text style={styles.textView}>Perfil</Text>
+                    </View>
+                  )
+                }
+              }} />
+            </Tab.Navigator>
+            :
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false
+              }}>
+              <Stack.Screen name="Login" component={() => <Login callback={token => this.setStateLogin(token)} />} />
+            </Stack.Navigator>
+          }
+        </NavigationContainer>
+      </>
     )
   }
 }

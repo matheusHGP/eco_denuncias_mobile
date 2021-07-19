@@ -16,28 +16,13 @@ class NewOptions extends Component {
             const problems = await axios.get('http://10.0.2.2:6000/problems')
             return problems.data
         } catch (error) {
+            alert(error.message)
             console.log(error.message)
         }
-        // var config = {
-        //     method: 'get',
-        //     url: 'http://10.0.2.2:6000/problems',
-        //     headers: {
-        //         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFwYSI6IjEyMzQ1IiwiaWF0IjoxNjI2NjY5NjMxLCJleHAiOjE2Mjc1MzM2MzEsInN1YiI6IjE0OWZjZmFlLWVmYzQtNDMyMC04ODFhLWNjNzA2NmQzMGNiNSJ9.VwyYftwoqpfnYH6qDl9kYUrweRygkk7UuBes4RIapm0'
-        //     }
-        // };
-        // axios(config)
-        //     .then(function (response) {
-        //         alert('foi')
-        //         console.log(JSON.stringify(response.data));
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error.message);
-        //     });
     }
 
     async componentDidMount() {
         const problems = await this.getProblem()
-        console.log(problems)
         this.setState({ problems: problems })
     }
 
@@ -54,30 +39,5 @@ class NewOptions extends Component {
         })
     }
 }
-
-const styles = StyleSheet.create({
-    bottomBar: {
-        backgroundColor: '#446DAB',
-        height: 50,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around'
-    },
-    viewIcon: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        textAlign: 'center'
-    },
-    icon: {
-        marginTop: 22
-    },
-    textIcon: {
-        marginTop: 0,
-        color: 'white',
-        fontWeight: '100'
-    }
-});
 
 export default NewOptions;

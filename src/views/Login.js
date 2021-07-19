@@ -8,53 +8,42 @@ import axios from 'axios'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default class Profile extends Component {
+export default class Login extends Component {
     constructor() {
         super()
         this.state = {
             token: '',
             isSigned: false,
             data: {
-                name: "",
-                email: "",
-                last_name: "",
-                whatsapp: "",
-                password: "",
-                cpf: "",
-                cep: ""
-            },
-            token: ''
+                email: '',
+                password: ''
+            }
         }
     }
 
-    // async componentDidMount() {
-    //     const token = await SyncStorage.get('TOKEN_KEY')
-    //     console.log('storage', token)
-    //     this.setState({ token })
-    // }
-
     onChange = (label, value) => {
+        console.log(this.state)
         const stateData = { ...this.state.data }
         stateData[label] = value
 
         this.setState({ data: stateData })
     }
 
-    save = async () => {
+    login = async () => {
         try {
             const data = { ...this.state.data }
             var config = {
-                method: 'put',
+                method: 'post',
                 url: 'http://10.0.2.2:6000/auth',
                 headers: {
-                    'Authorization': `Bearer ${this.state.token}`,
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIiLCJpYXQiOjE2MjY2Mzc5ODIsImV4cCI6MTYyNjcyNDM4Miwic3ViIjoiNGY5NmU0ODUtMTJmZC00MGFkLTk3OWItNzMyMTc5M2QzNWVjIn0.af69syebEXsOtYWu_tmxxoO-MvBW8IDgu-hqghp_JfQ',
                     'Content-Type': 'application/json'
                 },
                 data: JSON.stringify(data)
             };
             const response = await axios(config)
             this.props.callback(response.data.token)
-            alert(response.data.token)
+            // await SyncStorage.set('token_key', response.data.token)
         } catch (error) {
             alert(error.message)
         }
@@ -64,62 +53,26 @@ export default class Profile extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Perfil</Text>
+                    <Text style={styles.headerText}>Bem Vindo(a) !</Text>
                 </View>
                 <ScrollView style={{ flex: 1 }}>
                     <View style={styles.containerForm}>
                         <View>
-                            <View style={styles.containerInput}>
-                                <Text>Nome</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={this.state.data.nome}
-                                    onChangeText={(value) => this.onChange('nome', value)}
-                                >
-                                </TextInput>
-                            </View>
-                            <View style={styles.containerInput}>
-                                <Text>Sobrenome</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={this.state.data.last_name}
-                                    onChangeText={(value) => this.onChange('last_name', value)}
-                                >
-                                </TextInput>
-                            </View>
+                            <Text style={styles.bodyText}>
+                                Bem vindo(a) ao nosso aplicativo de denuncias!
+                                Para fazer uma denuncia, basta fazer o login
+                            </Text>
+                        </View>
+                        <View>
                             <View style={styles.containerInput}>
                                 <Text>Email</Text>
                                 <TextInput
                                     style={styles.input}
+                                    placeholder={"Digite seu email"}
+                                    textContentType="emailAddress"
+                                    keyboardType="email-address"
                                     value={this.state.data.email}
                                     onChangeText={(value) => this.onChange('email', value)}
-                                >
-                                </TextInput>
-                            </View>
-                            <View style={styles.containerInput}>
-                                <Text>Whatsapp</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={this.state.data.whatsapp}
-                                    onChangeText={(value) => this.onChange('whatsapp', value)}
-                                >
-                                </TextInput>
-                            </View>
-                            <View style={styles.containerInput}>
-                                <Text>CPF</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={this.state.data.cpf}
-                                    onChangeText={(value) => this.onChange('cpf', value)}
-                                >
-                                </TextInput>
-                            </View>
-                            <View style={styles.containerInput}>
-                                <Text>CEP</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={this.state.data.cep}
-                                    onChangeText={(value) => this.onChange('cep', value)}
                                 >
                                 </TextInput>
                             </View>
@@ -127,16 +80,20 @@ export default class Profile extends Component {
                                 <Text>Senha</Text>
                                 <TextInput
                                     style={styles.input}
-                                    value={this.state.data.email}
+                                    placeholder={"Digite sua senha"}
                                     textContentType="newPassword"
                                     secureTextEntry={true}
-                                    onChangeText={(value) => this.onChange('email', value)}
+                                    value={this.state.data.password}
+                                    onChangeText={(value) => this.onChange('password', value)}
                                 >
                                 </TextInput>
                             </View>
+                            <View style={styles.containerForgot}>
+                                <Text style={styles.textForgot}>Esqueceu a senha ?</Text>
+                            </View>
                             <View style={styles.containerInput}>
-                                <TouchableOpacity onPress={this.save} style={styles.buttonForm}>
-                                    <Text style={styles.textButtonForm}>Salvar</Text>
+                                <TouchableOpacity onPress={this.login} style={styles.buttonForm}>
+                                    <Text style={styles.textButtonForm}>Entrar</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
