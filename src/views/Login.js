@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity, ScrollView, Image } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import axios from 'axios'
@@ -43,7 +43,7 @@ export default class Login extends Component {
             };
             const response = await axios(config)
             this.props.callback(response.data.token)
-            // await SyncStorage.set('token_key', response.data.token)
+            await SyncStorage.set('token_key', response.data.token)
         } catch (error) {
             alert(error.message)
         }
@@ -53,14 +53,14 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Bem Vindo(a) !</Text>
+                    <Text style={styles.headerText}>Bem-Vindo(a)!</Text>
                 </View>
-                <ScrollView style={{ flex: 1 }}>
+                <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                     <View style={styles.containerForm}>
                         <View>
                             <Text style={styles.bodyText}>
-                                Bem vindo(a) ao nosso aplicativo de denuncias!
-                                Para fazer uma denuncia, basta fazer o login
+                               Aplicativo de denúncias da área
+                                ambiental, habitacional e urbana {"\n"}
                             </Text>
                         </View>
                         <View>
@@ -95,6 +95,7 @@ export default class Login extends Component {
                                 <TouchableOpacity onPress={this.login} style={styles.buttonForm}>
                                     <Text style={styles.textButtonForm}>Entrar</Text>
                                 </TouchableOpacity>
+                                <Image source={require('../images/unnamed.png')} style={styles.logo}/> 
                             </View>
                         </View>
                     </View>
@@ -130,9 +131,16 @@ const styles = StyleSheet.create({
     bodyText: {
         fontSize: 16,
         color: 'black',
-        // margin: 5,
+        marginTop: 15,
         textAlign: 'center'
     },
+
+    bodyText2: {
+        fontSize: 20,
+        color: '#000C66',
+        marginTop: 80,
+        textAlign: 'center'
+    }, 
     input: {
         height: 40,
         paddingLeft: 7,
@@ -160,5 +168,10 @@ const styles = StyleSheet.create({
     },
     textForgot: {
         color: 'blue'
+    },
+    logo:{
+        marginTop: 50,
+        width: 310,
+        height: 115,
     }
 });
