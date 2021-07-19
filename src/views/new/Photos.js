@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Image, TextInput } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import CustomizeSteps from "../../components/CustomizeSteps";
@@ -75,17 +75,41 @@ export default class Resume extends Component {
                         return (
                             <View style={styles.viewImage}>
                                 <Image key={index} source={{ uri: image.hash_image }} style={styles.image} />
-                                <Text style={styles.textRemoveImage} onPress={() => this.removeImage(index)}>Remover</Text>
+                                <Text key={index + 1} style={styles.textRemoveImage} onPress={() => this.removeImage(index)}>Remover</Text>
                             </View>
                         )
                     })}
                 </View>
+                <Text style={styles.infomation}>
+                   Adicione informações a respeito das imagens (Obrigatório)
+                </Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Insira informações sobre as images'
+                />
             </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    input: {
+        height: 100,
+        margin: 30,
+        textAlign: 'left',
+        paddingLeft: 7,
+        borderWidth: 1,
+        borderRadius: 7
+    },
+    infomation: {
+        display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'left',
+        fontSize: 17,
+        marginTop: 15,
+        marginLeft: 10,
+        paddingLeft: 7
+    },
     header: {
         textAlign: 'center',
         fontSize: 23,
@@ -126,12 +150,6 @@ const styles = StyleSheet.create({
     textRemoveImage: {
         color: 'red',
         textAlign: 'center'
-    },
-    input: {
-        height: 40,
-        paddingLeft: 7,
-        borderWidth: 1,
-        borderRadius: 7
     },
     inputBig: {
         height: 80,

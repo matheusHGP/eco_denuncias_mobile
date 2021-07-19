@@ -74,8 +74,8 @@ export default class Infrator extends Component {
                     {this.props.state.offender.photos.map((image, index) => {
                         return (
                             <View style={styles.viewImage}>
-                                <Image key={index} source={{ uri: image.hash_image }} style={styles.image} />
-                                <Text key={index + 1} style={styles.textRemoveImage} onPress={() => this.removeImage(index)}>Remover</Text>
+                                <Image key={index + 2} source={{ uri: image.hash_image }} style={styles.image} />
+                                <Text key={index + 3} style={styles.textRemoveImage} onPress={() => this.removeImage(index)}>Remover</Text>
                             </View>
                         )
                     })}
@@ -87,7 +87,7 @@ export default class Infrator extends Component {
                 </Text>
                 <TextInput 
                 style={styles.input}
-                 placeholder='Digite a informação' 
+                 placeholder='Insira informações sobre o(s) infrator(es)' 
                  value={this.props.state.offender.offender_details} 
                  onChangeText={(value) => this.props.onChange('offender_details', value)}
                  />
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     input: {
         height: 100,
         margin: 30,
-        textAlign: 'center',
+        textAlign: 'left',
         paddingLeft: 7,
         borderWidth: 1,
         borderRadius: 7

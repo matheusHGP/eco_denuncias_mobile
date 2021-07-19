@@ -12,7 +12,7 @@ const CustomModalSuccess = ({ occurrence, onClose }) => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.hearder}> Denúncia enviada com sucesso ! </Text>
-                        <Text style={styles.hearder}> Número da denúncia: {occurrence.id} </Text>
+                        <Text style={styles.hearder}> Número da denúncia: 12345/2021 </Text>
                         <Text style={styles.description}>
                             Muito obrigado por colaborar conosco.
                             Você está nos ajudando a tornar a

@@ -13,7 +13,7 @@ class NewOptions extends Component {
 
     getProblem = async () => {
         try {
-            const problems = await axios.get('http://10.0.2.2:6000/problems')
+            const problems = await axios.get('http://10.0.2.2:8080/problems')
             return problems.data
         } catch (error) {
             alert(error.message)

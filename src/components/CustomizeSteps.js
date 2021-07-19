@@ -53,7 +53,7 @@ export default class CustomizeSteps extends Component {
     saveOccurrence = async () => {
         let photos = [...this.state.photos, ...this.state.offender.photos]
 
-        const location = { ...this.state.location, number: Number(this.state.location.number), date_occurred: new Date(this.state.location.date_occurred) }
+        const location = { ...this.state.location, number: Number(this.state.location.number), date_occurred: '2021/10/10' }
         const data = {
             problem_id: this.props.problem.id,
             ...location,
@@ -63,9 +63,9 @@ export default class CustomizeSteps extends Component {
 
         var config = {
             method: 'post',
-            url: 'http://10.0.2.2:6000/occurrences',
+            url: 'http://10.0.2.2:8080/occurrences',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIiLCJpYXQiOjE2MjY2Mzc5ODIsImV4cCI6MTYyNjcyNDM4Miwic3ViIjoiNGY5NmU0ODUtMTJmZC00MGFkLTk3OWItNzMyMTc5M2QzNWVjIn0.af69syebEXsOtYWu_tmxxoO-MvBW8IDgu-hqghp_JfQ',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hdGhldXNAZ21haWwuY29tIiwiaWF0IjoxNjI2NzMxMTc0LCJleHAiOjE2MjY4MTc1NzQsInN1YiI6ImFhYWFiMzdkLTQ5ZjItNGFiMi1iNDg1LTdjODllYzlhYzNiOCJ9.31fhtxhpJbxMLiGWhSG8bkq5_j1ZxuYvH7LAqemBKyQ',
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(data)

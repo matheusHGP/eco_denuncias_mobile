@@ -14,6 +14,7 @@ import NewOptions from "./src/views/NewOptions";
 import NavigatorOptions from "./src/views/NavigatorOptions";
 import New from "./src/views/new/New";
 import Login from "./src/views/Login";
+import List from "./src/views/List";
 
 
 const Tab = createBottomTabNavigator();
@@ -31,6 +32,10 @@ class App extends Component {
   setStateLogin = (token) => {
     this.setState({ token })
     this.setState({ isSigned: true })
+  }
+
+  Pointer = () => {
+    return <Login callback={this.setStateLogin} />
   }
 
   render() {
@@ -63,7 +68,7 @@ class App extends Component {
                   )
                 }
               }} />
-              <Tab.Screen name="Accusations" component={Accusations} options={{
+              <Tab.Screen name="Accusations" component={List} options={{
                 tabBarIcon: ({ focused }) => {
                   return (
                     <View style={styles.iconView}>
@@ -99,7 +104,7 @@ class App extends Component {
               screenOptions={{
                 headerShown: false
               }}>
-              <Stack.Screen name="Login" component={() => <Login callback={token => this.setStateLogin(token)} />} />
+              <Stack.Screen name="Login" component={this.Pointer} />
             </Stack.Navigator>
           }
         </NavigationContainer>

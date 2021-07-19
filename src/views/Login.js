@@ -34,7 +34,7 @@ export default class Login extends Component {
             const data = { ...this.state.data }
             var config = {
                 method: 'post',
-                url: 'http://10.0.2.2:6000/auth',
+                url: 'http://10.0.2.2:8080/auth',
                 headers: {
                     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIiLCJpYXQiOjE2MjY2Mzc5ODIsImV4cCI6MTYyNjcyNDM4Miwic3ViIjoiNGY5NmU0ODUtMTJmZC00MGFkLTk3OWItNzMyMTc5M2QzNWVjIn0.af69syebEXsOtYWu_tmxxoO-MvBW8IDgu-hqghp_JfQ',
                     'Content-Type': 'application/json'
@@ -43,7 +43,6 @@ export default class Login extends Component {
             };
             const response = await axios(config)
             this.props.callback(response.data.token)
-            await SyncStorage.set('token_key', response.data.token)
         } catch (error) {
             alert(error.message)
         }

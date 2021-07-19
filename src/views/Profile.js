@@ -15,13 +15,15 @@ export default class Profile extends Component {
             token: '',
             isSigned: false,
             data: {
-                name: "",
-                email: "",
-                last_name: "",
-                whatsapp: "",
-                password: "",
-                cpf: "",
-                cep: ""
+                "id": "aaaab37d-49f2-4ab2-b485-7c89ec9ac3b8",
+                "name": "Matheus Henrique",
+                "email": "matheus@gmail.com",
+                "last_name": "Gotardo Pintor",
+                "whatsapp": "(16) 999716806",
+                "cpf": "48207553888",
+                "cep": "14403788",
+                "created_at": "2021-07-19T21:42:55.692Z",
+                "updated_at": "2021-07-19T21:42:55.692Z"
             },
             token: ''
         }
@@ -45,7 +47,7 @@ export default class Profile extends Component {
             const data = { ...this.state.data }
             var config = {
                 method: 'put',
-                url: 'http://10.0.2.2:6000/auth',
+                url: 'http://10.0.2.2:8080/auth',
                 headers: {
                     'Authorization': `Bearer ${this.state.token}`,
                     'Content-Type': 'application/json'
@@ -73,7 +75,7 @@ export default class Profile extends Component {
                                 <Text>Nome</Text>
                                 <TextInput
                                     style={styles.input}
-                                    value={this.state.data.nome}
+                                    value={this.state.data.name}
                                     onChangeText={(value) => this.onChange('nome', value)}
                                 >
                                 </TextInput>
@@ -127,10 +129,8 @@ export default class Profile extends Component {
                                 <Text>Senha</Text>
                                 <TextInput
                                     style={styles.input}
-                                    value={this.state.data.email}
                                     textContentType="newPassword"
                                     secureTextEntry={true}
-                                    onChangeText={(value) => this.onChange('email', value)}
                                 >
                                 </TextInput>
                             </View>
